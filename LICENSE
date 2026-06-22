@@ -1,0 +1,69 @@
+SPINEARN PROPRIETARY LICENSE
+Source-Available, All Rights Reserved
+
+Copyright (c) 2026 Mayur Pashte (mayur.pashte@acc.ltd)
+All rights reserved.
+
+────────────────────────────────────────────────────────────────────────────────
+
+PERMITTED USES
+
+1. You may VIEW this source code for personal learning and evaluation purposes.
+2. You may CLONE and RUN this software locally solely for the purpose of
+   evaluating its functionality.
+
+────────────────────────────────────────────────────────────────────────────────
+
+PROHIBITED USES
+
+The following are strictly prohibited without explicit prior written permission
+from the copyright holder:
+
+1. COPYING — You may not copy this code, in whole or in part, into any other
+   project, product, repository, or system.
+
+2. MODIFICATION — You may not modify, adapt, translate, or create derivative
+   works based on this software.
+
+3. DISTRIBUTION — You may not distribute, publish, sublicense, sell, rent,
+   lease, or transfer this software or any portion of it to any third party.
+
+4. COMMERCIAL USE — You may not use this software or any portion of it for
+   any commercial purpose, including but not limited to building competing
+   products or services.
+
+5. COMPETING PRODUCTS — You may not use the concepts, architecture, or
+   implementation details of this software to build any product that competes
+   directly or indirectly with SpinEarn or SpinAds.
+
+6. REVERSE ENGINEERING — You may not reverse engineer any compiled or
+   minified portions of this software beyond what is already provided in
+   source form in this repository.
+
+────────────────────────────────────────────────────────────────────────────────
+
+NO WARRANTY
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF,
+OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+────────────────────────────────────────────────────────────────────────────────
+
+LICENSING INQUIRIES
+
+To request a license for commercial use, partnership, white-labeling, or any
+other use not permitted above, contact:
+
+  Mayur Pashte
+  mayur.pashte@acc.ltd
+  https://spinads.dev
+
+────────────────────────────────────────────────────────────────────────────────
+
+Any use of this software beyond the permitted uses listed above constitutes
+copyright infringement and may be subject to legal action.
