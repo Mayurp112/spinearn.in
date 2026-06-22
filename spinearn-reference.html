@@ -1,0 +1,1026 @@
+<title>SpinEarn — Project Reference</title>
+<style>
+  :root {
+    --ground:   #0F1419;
+    --surface:  #161E2B;
+    --surface2: #1C2840;
+    --border:   #1E2E44;
+    --text:     #DDE3F0;
+    --muted:    #4E6488;
+    --accent:   #EFA32A;
+    --teal:     #34C9A8;
+    --red:      #E05555;
+    --blue:     #4B8EF0;
+    --purple:   #9B72E8;
+    --mono:     'Cascadia Code','Consolas','JetBrains Mono','Courier New',monospace;
+    --sans:     -apple-system,'Segoe UI',system-ui,sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.65;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── Sidebar ── */
+  nav {
+    width: 220px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-brand {
+    padding: 22px 20px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+
+  .nav-brand-sub {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+    margin-top: 3px;
+  }
+
+  .nav-section {
+    padding: 14px 0 4px 20px;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  nav a {
+    display: block;
+    padding: 7px 20px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    line-height: 1.3;
+  }
+
+  nav a:hover {
+    color: var(--text);
+    border-left-color: var(--border);
+  }
+
+  nav a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+  }
+
+  /* ── Main ── */
+  main {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+  }
+
+  .section {
+    padding: 52px 52px 48px;
+    border-bottom: 1px solid var(--border);
+    max-width: 920px;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .sec-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .sec-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .sec-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 28px 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  h3:first-of-type { margin-top: 0; }
+
+  p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 12px; }
+  p strong { color: var(--text); font-weight: 500; }
+
+  /* ── Tables ── */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tbl th {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0 12px 10px 0;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .tbl td {
+    padding: 10px 12px 10px 0;
+    border-bottom: 1px solid rgba(30,46,68,0.6);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl .mono { font-family: var(--mono); font-size: 12px; }
+  .tbl .dim  { color: var(--muted); }
+
+  /* ── Code ── */
+  code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: rgba(75,142,240,0.08);
+    color: var(--blue);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text);
+    overflow-x: auto;
+    margin: 12px 0;
+  }
+
+  pre .c  { color: var(--muted); }
+  pre .k  { color: var(--accent); }
+  pre .s  { color: var(--teal); }
+  pre .v  { color: var(--blue); }
+
+  /* ── Badges ── */
+  .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .b-req  { background: rgba(229,85,85,0.12); color: var(--red);    border: 1px solid rgba(229,85,85,0.25); }
+  .b-opt  { background: rgba(75,142,240,0.1); color: var(--blue);   border: 1px solid rgba(75,142,240,0.2); }
+  .b-pass { background: rgba(52,201,168,0.1); color: var(--teal);   border: 1px solid rgba(52,201,168,0.2); }
+  .b-warn { background: rgba(239,163,42,0.1); color: var(--accent); border: 1px solid rgba(239,163,42,0.2); }
+  .b-info { background: rgba(155,114,232,0.1); color: var(--purple);border: 1px solid rgba(155,114,232,0.2); }
+
+  /* ── Grid ── */
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 18px 20px;
+  }
+
+  .card-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .card p { margin: 0; font-size: 13px; }
+
+  .num {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .num.t { color: var(--teal); }
+  .num.b { color: var(--blue); }
+
+  /* ── Architecture diagram ── */
+  .arch {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .arch-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+  }
+
+  .arch-node {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 110px;
+    line-height: 1.3;
+  }
+
+  .arch-node small {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 2px;
+    font-family: var(--mono);
+  }
+
+  .n-ext  { background: rgba(155,114,232,0.08); border-color: rgba(155,114,232,0.3); color: var(--purple); }
+  .n-api  { background: rgba(75,142,240,0.08);  border-color: rgba(75,142,240,0.3);  color: var(--blue);   }
+  .n-db   { background: rgba(52,201,168,0.08);  border-color: rgba(52,201,168,0.3);  color: var(--teal);   }
+  .n-pay  { background: rgba(239,163,42,0.08);  border-color: rgba(239,163,42,0.3);  color: var(--accent); }
+  .n-fe   { background: rgba(229,85,85,0.08);   border-color: rgba(229,85,85,0.3);   color: var(--red);    }
+  .n-wrk  { background: rgba(30,46,68,0.6);     border-color: var(--border);          color: var(--muted);  }
+
+  .arch-arrow {
+    font-size: 14px;
+    color: var(--border);
+    padding: 0 6px;
+    flex-shrink: 0;
+    font-family: var(--mono);
+  }
+
+  .arch-spacer { height: 10px; display: flex; align-items: center; justify-content: center; }
+  .arch-vline { width: 1px; height: 10px; background: var(--border); margin: 0 auto; }
+
+  .arch-label {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: var(--mono);
+    padding: 0 6px;
+    white-space: nowrap;
+  }
+
+  /* ── Timeline / steps ── */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step  {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 0 16px;
+    padding-bottom: 20px;
+    position: relative;
+  }
+  .step:last-child { padding-bottom: 0; }
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step:not(:last-child) .step-num::after {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: calc(100% + 20px - 28px);
+    background: var(--border);
+    z-index: 0;
+  }
+  .step-body { padding-top: 4px; }
+  .step-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .step-desc  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 24px 0;
+  }
+
+  /* ── Tier cards ── */
+  .tier {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+
+  .tier-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .tier-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .tier-cost {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .tier-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .tier-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .tier-notes {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+
+  .tier-notes strong { color: var(--text); font-weight: 500; }
+
+  /* ── Schema pill ── */
+  .schema-table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .schema-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .schema-name {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  .schema-desc {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .schema-body { padding: 0 18px; }
+
+  .col-row {
+    display: grid;
+    grid-template-columns: 160px 120px 60px 1fr;
+    gap: 8px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(30,46,68,0.5);
+    font-size: 12px;
+    align-items: baseline;
+  }
+
+  .col-row:last-child { border-bottom: none; }
+
+  .col-row.header-row {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 0 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .col-name { font-family: var(--mono); font-size: 12px; color: var(--blue); }
+  .col-type { font-family: var(--mono); font-size: 11px; color: var(--accent); }
+  .col-null { color: var(--muted); font-family: var(--mono); font-size: 11px; }
+  .col-desc { color: var(--muted); line-height: 1.4; font-size: 12px; }
+
+  .pk { color: var(--accent) !important; }
+  .fk { color: var(--purple) !important; }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    nav { display: none; }
+    .section { padding: 36px 24px; }
+    .g2, .g3 { grid-template-columns: 1fr; }
+    .col-row { grid-template-columns: 130px 100px 1fr; }
+    .col-row .col-null { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<!-- ══ SIDEBAR ══════════════════════════════════════════════════════ -->
+<nav id="sidenav">
+  <div class="nav-brand">
+    <div class="nav-brand-name">SpinEarn</div>
+    <div class="nav-brand-sub">Project Reference v1.0</div>
+  </div>
+
+  <div class="nav-section">Overview</div>
+  <a href="#architecture">Architecture</a>
+
+  <div class="nav-section">Deployment</div>
+  <a href="#deploy-now">Current — 0–1k devs</a>
+  <a href="#deploy-scale">Scale — 2k–5k devs</a>
+
+  <div class="nav-section">Configuration</div>
+  <a href="#env">Environment Variables</a>
+  <a href="#schema">Database Schema</a>
+
+  <div class="nav-section">Extension</div>
+  <a href="#marketplace">Marketplace Publishing</a>
+  <a href="#versioning">Versioning Strategy</a>
+</nav>
+
+<!-- ══ MAIN ═════════════════════════════════════════════════════════ -->
+<main>
+
+  <!-- ─ Architecture ─────────────────────────────────────────────── -->
+  <div class="section" id="architecture">
+    <div class="sec-tag">Overview</div>
+    <div class="sec-title">System Architecture</div>
+    <div class="sec-desc">How every component connects — extension to API to database to payment providers.</div>
+
+    <div class="arch">
+      <div class="arch-row">
+        <div class="arch-node n-ext">VS Code Extension<small>TypeScript</small></div>
+        <div class="arch-arrow">────────────</div>
+        <div class="arch-node n-fe">Next.js Dashboard<small>React 18 / App Router</small></div>
+      </div>
+      <div class="arch-spacer"><div class="arch-vline"></div></div>
+      <div class="arch-row">
+        <div class="arch-node n-wrk" style="min-width: 310px;">Nginx Reverse Proxy<small>:80 → routes /api/* + static</small></div>
+      </div>
+      <div class="arch-spacer"><div class="arch-vline"></div></div>
+      <div class="arch-row">
+        <div class="arch-node n-api">FastAPI Backend<small>Python 3.12 / Uvicorn</small></div>
+        <div class="arch-arrow">────</div>
+        <div class="arch-node n-wrk">Celery Worker<small>4 concurrent</small></div>
+        <div class="arch-arrow">────</div>
+        <div class="arch-node n-wrk">Celery Beat<small>hourly auction sync</small></div>
+      </div>
+      <div class="arch-spacer"><div class="arch-vline"></div></div>
+      <div class="arch-row">
+        <div class="arch-node n-db">PostgreSQL 16<small>primary data store</small></div>
+        <div class="arch-arrow">────────────</div>
+        <div class="arch-node n-db">Redis 7<small>auction ZSET · rate limits · queue</small></div>
+      </div>
+      <div class="arch-spacer"><div class="arch-vline"></div></div>
+      <div class="arch-row">
+        <div class="arch-node n-pay">Razorpay<small>advertiser payments + India payouts</small></div>
+        <div class="arch-arrow">────────────</div>
+        <div class="arch-node n-pay">Wise Business<small>global developer payouts</small></div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3>Request flow — developer sees an ad</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Extension polls <code>GET /api/v1/ads/current</code></div>
+          <div class="step-desc">Every 30–60 s when an AI spinner is active. Nginx forwards to FastAPI. Returns <code>impression_id</code>, <code>creative_text</code>, <code>click_url</code>.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Auction picks winner from Redis ZSET</div>
+          <div class="step-desc">Campaigns stored as sorted set scored by <code>bid_cpm</code>. Highest bidder with remaining impressions wins. Cache TTL 5000 ms.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Extension shows ad, starts 5 s timer</div>
+          <div class="step-desc">ImpressionTracker ticks every 100 ms. Only counts when VS Code window is focused. At 5 s calls <code>POST /api/v1/metrics/impression/confirm</code>.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Backend credits developer balance</div>
+          <div class="step-desc">Fraud caps checked (50¢/hour, $5/day). <code>developer_earn</code> added to <code>pending_balance</code>. Campaign <code>impressions_served</code> incremented.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Developer requests payout → Celery task dispatched</div>
+          <div class="step-desc">India → Razorpay Route (bank/UPI). Global → Wise (IBAN/SWIFT/ACH). Minimum $10 USD. Payout confirmed via webhook (Razorpay) or immediate fund call (Wise).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ Deployment — Current ──────────────────────────────────────── -->
+  <div class="section" id="deploy-now">
+    <div class="sec-tag">Deployment</div>
+    <div class="sec-title">Current Plan — 0 to 1,000 developers</div>
+    <div class="sec-desc">Single EC2 instance, all services in Docker Compose. Verified to handle 1k developers at &lt;5% backend capacity.</div>
+
+    <div class="tier">
+      <div class="tier-header">
+        <div class="tier-name">Single EC2 t3.large · 8 GB RAM · 2 vCPU</div>
+        <div class="tier-cost">&#8377;4,000–6,500 / month</div>
+      </div>
+      <div class="tier-stack">
+        <span class="tier-tag">nginx</span>
+        <span class="tier-tag">fastapi + uvicorn</span>
+        <span class="tier-tag">postgres 16</span>
+        <span class="tier-tag">redis 7</span>
+        <span class="tier-tag">celery worker</span>
+        <span class="tier-tag">celery beat</span>
+        <span class="tier-tag">next.js frontend</span>
+      </div>
+      <div class="tier-notes">
+        <strong>Memory used at baseline:</strong> ~2.8 GB of 8 GB (35%). <strong>Peak backend load at 1k users:</strong> ~20 req/s vs 800 req/s capacity.<br>
+        <strong>On-demand cost:</strong> t3.large &#8776; &#8377;6,500/month. <strong>1-year reserved:</strong> &#8776; &#8377;4,000/month.
+      </div>
+    </div>
+
+    <h3>Memory allocation per container</h3>
+    <table class="tbl">
+      <thead><tr><th>Container</th><th>Image</th><th>RAM (est.)</th></tr></thead>
+      <tbody>
+        <tr><td>spinads_nginx</td><td class="mono">nginx:alpine</td><td class="mono">~55 MB</td></tr>
+        <tr><td>spinads_backend</td><td class="mono">python:3.12-slim</td><td class="mono">~300 MB</td></tr>
+        <tr><td>spinads_celery</td><td class="mono">same image</td><td class="mono">~420 MB</td></tr>
+        <tr><td>spinads_celery_beat</td><td class="mono">same image</td><td class="mono">~110 MB</td></tr>
+        <tr><td>spinads_frontend</td><td class="mono">node:20-alpine</td><td class="mono">~380 MB</td></tr>
+        <tr><td>spinads_postgres</td><td class="mono">postgres:16-alpine</td><td class="mono">~512 MB</td></tr>
+        <tr><td>spinads_redis</td><td class="mono">redis:7-alpine</td><td class="mono">256 MB (capped)</td></tr>
+        <tr><td>OS + Docker daemon</td><td>—</td><td class="mono">~800 MB</td></tr>
+        <tr><td class="mono" style="color:var(--accent);font-weight:600;">Total</td><td></td><td class="mono" style="color:var(--accent);font-weight:600;">~2.83 GB</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+
+    <h3>3 fixes required before production</h3>
+    <div class="g3" style="margin-top: 4px;">
+      <div class="card" style="border-top: 2px solid var(--red);">
+        <div class="card-title">Critical</div>
+        <div style="font-size:13px; color:var(--text); font-weight:600; margin-bottom:6px;">Remove <code>--reload</code></div>
+        <p>Found in docker-compose.yml uvicorn command. Dev-only flag. Scans filesystem continuously. Switch to <code>--workers 2</code>.</p>
+      </div>
+      <div class="card" style="border-top: 2px solid var(--accent);">
+        <div class="card-title">High</div>
+        <div style="font-size:13px; color:var(--text); font-weight:600; margin-bottom:6px;">PostgreSQL backups</div>
+        <p>No backup job exists. Add nightly <code>pg_dump</code> cron to S3 or a second volume. Developer balances are real money.</p>
+      </div>
+      <div class="card" style="border-top: 2px solid var(--blue);">
+        <div class="card-title">Medium</div>
+        <div style="font-size:13px; color:var(--text); font-weight:600; margin-bottom:6px;">Server-side impression check</div>
+        <p>5 s timer is client-side only. Add server validation: <code>confirmed_at - created_at >= 4.5 s</code>. Prevents fake confirms.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ Deployment — Scale ────────────────────────────────────────── -->
+  <div class="section" id="deploy-scale">
+    <div class="sec-tag">Deployment</div>
+    <div class="sec-title">Scale Plan — 2,000 to 5,000 developers</div>
+    <div class="sec-desc">At 2k+ the first bottleneck is PostgreSQL connection exhaustion and disk I/O contention on a single machine. The solution is separating stateful services onto managed infrastructure.</div>
+
+    <div class="tier" style="border-top: 3px solid var(--accent);">
+      <div class="tier-header">
+        <div class="tier-name">Tier 2 — 2,000 developers</div>
+        <div class="tier-cost">&#8377;14,000–18,000 / month</div>
+      </div>
+      <div class="tier-stack">
+        <span class="tier-tag">EC2 t3.large (app only)</span>
+        <span class="tier-tag">RDS db.t3.medium (postgres)</span>
+        <span class="tier-tag">ElastiCache t3.micro (redis)</span>
+      </div>
+      <div class="tier-notes">
+        Move PostgreSQL to <strong>Amazon RDS</strong> — managed backups, automatic failover, separate IOPS. Move Redis to <strong>ElastiCache</strong> — dedicated memory, no contention with app containers. EC2 now runs only nginx + FastAPI + Celery + Next.js.<br><br>
+        At 2k devs peak load reaches ~40 req/s. DB connection pool (30) is sufficient because async SQLAlchemy releases connections immediately. <strong>Add PgBouncer</strong> if you see connection wait times.
+      </div>
+    </div>
+
+    <div class="tier" style="border-top: 3px solid var(--teal);">
+      <div class="tier-header">
+        <div class="tier-name">Tier 3 — 5,000 developers</div>
+        <div class="tier-cost">&#8377;32,000–42,000 / month</div>
+      </div>
+      <div class="tier-stack">
+        <span class="tier-tag">2x EC2 t3.large behind ALB</span>
+        <span class="tier-tag">RDS db.t3.large + read replica</span>
+        <span class="tier-tag">ElastiCache t3.small</span>
+        <span class="tier-tag">Application Load Balancer</span>
+      </div>
+      <div class="tier-notes">
+        Peak load at 5k devs: ~80–100 req/s. Add ALB in front of two EC2s (active-active). Read replica for <code>GET</code>-heavy routes (earnings, leaderboard). Next.js can move to <strong>Vercel free tier</strong> — removes frontend load from EC2 entirely.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3>What breaks first (in order)</h3>
+    <table class="tbl">
+      <thead><tr><th>#</th><th>Bottleneck</th><th>Triggers at</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>PostgreSQL connections exhausted</td><td class="mono">~1,500 devs</td><td>RDS + PgBouncer</td></tr>
+        <tr><td>2</td><td>EC2 disk I/O (Postgres + Redis competing)</td><td class="mono">~1,500 devs</td><td>Separate to RDS + ElastiCache</td></tr>
+        <tr><td>3</td><td>Celery queue back-pressure (payout spike)</td><td class="mono">~3,000 devs</td><td>Increase concurrency to 8–16 workers</td></tr>
+        <tr><td>4</td><td>Single EC2 SPOF becomes business risk</td><td class="mono">~3,000 devs</td><td>ALB + second EC2</td></tr>
+        <tr><td>5</td><td>Redis auction ZSET scan performance</td><td class="mono">~500 campaigns</td><td>Already capped at 10 iterations; monitor</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─ Environment Variables ──────────────────────────────────────── -->
+  <div class="section" id="env">
+    <div class="sec-tag">Configuration</div>
+    <div class="sec-title">Environment Variables</div>
+    <div class="sec-desc">All variables read from <code>.env</code> by Pydantic Settings (backend) and <code>.env.local</code> (frontend). Never commit these files.</div>
+
+    <h3>Backend — <code>backend/.env</code></h3>
+    <table class="tbl">
+      <thead><tr><th>Variable</th><th>Required</th><th>Default</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">DATABASE_URL</td><td><span class="badge b-req">Required</span></td><td class="dim mono">—</td><td>Format: <code>postgresql+asyncpg://user:pass@host/db</code></td></tr>
+        <tr><td class="mono">REDIS_URL</td><td><span class="badge b-opt">Optional</span></td><td class="mono">redis://localhost:6379/0</td><td>Main cache + auction. DB 0.</td></tr>
+        <tr><td class="mono">CELERY_BROKER_URL</td><td><span class="badge b-opt">Optional</span></td><td class="mono">redis://localhost:6379/1</td><td>Task queue. DB 1 (separate from cache).</td></tr>
+        <tr><td class="mono">SECRET_KEY</td><td><span class="badge b-req">Required</span></td><td class="dim mono">—</td><td>JWT signing key. Min 32 chars. Generate: <code>openssl rand -hex 32</code></td></tr>
+        <tr><td class="mono">GOOGLE_CLIENT_ID</td><td><span class="badge b-req">Required</span></td><td class="dim mono">—</td><td>From Google Cloud Console → OAuth 2.0 Credentials.</td></tr>
+        <tr><td class="mono">GOOGLE_CLIENT_SECRET</td><td><span class="badge b-req">Required</span></td><td class="dim mono">—</td><td>Same OAuth credential.</td></tr>
+        <tr><td class="mono">GITHUB_CLIENT_ID</td><td><span class="badge b-opt">Optional</span></td><td class="mono">""</td><td>GitHub OAuth App. If empty, <code>/auth/github</code> returns 501.</td></tr>
+        <tr><td class="mono">GITHUB_CLIENT_SECRET</td><td><span class="badge b-opt">Optional</span></td><td class="mono">""</td><td>Pair with GITHUB_CLIENT_ID.</td></tr>
+        <tr><td class="mono">RAZORPAY_KEY_ID</td><td><span class="badge b-req">Required</span></td><td class="mono">""</td><td>From Razorpay dashboard. Needed for all advertiser payments.</td></tr>
+        <tr><td class="mono">RAZORPAY_KEY_SECRET</td><td><span class="badge b-req">Required</span></td><td class="mono">""</td><td>Signs order creation + verifies payment signature.</td></tr>
+        <tr><td class="mono">RAZORPAY_WEBHOOK_SECRET</td><td><span class="badge b-req">Required</span></td><td class="mono">""</td><td>HMAC-SHA256 secret for <code>/api/v1/webhooks/razorpay</code> events.</td></tr>
+        <tr><td class="mono">RAZORPAY_ACCOUNT_NUMBER</td><td><span class="badge b-req">Required</span></td><td class="mono">""</td><td>Razorpay X account. Source for Route payouts to Indian developers.</td></tr>
+        <tr><td class="mono">WISE_API_KEY</td><td><span class="badge b-opt">Optional</span></td><td class="mono">""</td><td>Wise Business API key. Required to pay global (non-India) developers.</td></tr>
+        <tr><td class="mono">WISE_PROFILE_ID</td><td><span class="badge b-opt">Optional</span></td><td class="mono">""</td><td>Numeric ID of your Wise Business profile.</td></tr>
+        <tr><td class="mono">USD_TO_INR_RATE</td><td><span class="badge b-opt">Optional</span></td><td class="mono">83.0</td><td>Conversion rate for Razorpay INR payouts. Update periodically.</td></tr>
+        <tr><td class="mono">PLATFORM_REVENUE_SHARE</td><td><span class="badge b-opt">Optional</span></td><td class="mono">0.50</td><td>Platform fraction. Developer gets <code>1 - this</code>. Must be 0–1.</td></tr>
+        <tr><td class="mono">FRONTEND_URL</td><td><span class="badge b-opt">Optional</span></td><td class="mono">http://localhost:3000</td><td>Used in CORS allowed origins. Set to your production domain.</td></tr>
+        <tr><td class="mono">ENVIRONMENT</td><td><span class="badge b-opt">Optional</span></td><td class="mono">development</td><td>Set to <code>production</code> in prod. Controls logging + FastAPI docs.</td></tr>
+        <tr><td class="mono">HOURLY_CAP_CENTS</td><td><span class="badge b-opt">Optional</span></td><td class="mono">50</td><td>Max developer earnings per hour ($0.50).</td></tr>
+        <tr><td class="mono">DAILY_CAP_CENTS</td><td><span class="badge b-opt">Optional</span></td><td class="mono">500</td><td>Max developer earnings per day ($5.00).</td></tr>
+        <tr><td class="mono">MINIMUM_PAYOUT_CENTS</td><td><span class="badge b-opt">Optional</span></td><td class="mono">1000</td><td>Minimum balance before payout can be requested ($10.00).</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+
+    <h3>Frontend — <code>frontend/.env.local</code></h3>
+    <table class="tbl">
+      <thead><tr><th>Variable</th><th>Required</th><th>Example</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">NEXT_PUBLIC_API_URL</td><td><span class="badge b-req">Required</span></td><td class="mono">https://api.spinads.dev</td><td>Backend API URL. <code>NEXT_PUBLIC_</code> prefix exposes it to browser.</td></tr>
+        <tr><td class="mono">NEXTAUTH_URL</td><td><span class="badge b-req">Required</span></td><td class="mono">https://spinads.dev</td><td>Full URL of your Next.js app. NextAuth v5 requires this.</td></tr>
+        <tr><td class="mono">NEXTAUTH_SECRET</td><td><span class="badge b-req">Required</span></td><td class="dim">—</td><td>Random string for session encryption. Generate: <code>openssl rand -hex 32</code></td></tr>
+        <tr><td class="mono">AUTH_GOOGLE_ID</td><td><span class="badge b-req">Required</span></td><td class="dim">—</td><td>Same Google OAuth client ID as backend.</td></tr>
+        <tr><td class="mono">AUTH_GOOGLE_SECRET</td><td><span class="badge b-req">Required</span></td><td class="dim">—</td><td>Same Google OAuth client secret as backend.</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+
+    <h3>Extension — user settings (VS Code)</h3>
+    <table class="tbl">
+      <thead><tr><th>Setting key</th><th>Default</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">spinads.apiUrl</td><td class="mono">https://api.spinads.dev</td><td>Overridable per workspace. Used by ApiClient.</td></tr>
+        <tr><td class="mono">spinads.enabled</td><td class="mono">true</td><td>Global kill switch. Also controlled remotely via <code>/api/v1/config</code>.</td></tr>
+        <tr><td class="mono">spinads.showInStatusBar</td><td class="mono">true</td><td>Shows live earnings in VS Code status bar.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─ Database Schema ───────────────────────────────────────────── -->
+  <div class="section" id="schema">
+    <div class="sec-tag">Configuration</div>
+    <div class="sec-title">Database Schema</div>
+    <div class="sec-desc">PostgreSQL 16. All primary keys are UUID v4 generated server-side via <code>gen_random_uuid()</code>. Managed by Alembic migrations in <code>backend/alembic/versions/</code>.</div>
+
+    <div class="schema-table-wrap">
+      <div class="schema-header"><div class="schema-name">developers</div><div class="schema-desc">One row per registered user. Central table — referenced by all others.</div></div>
+      <div class="schema-body">
+        <div class="col-row header-row"><span>Column</span><span>Type</span><span>Null</span><span>Description</span></div>
+        <div class="col-row"><span class="col-name pk">id</span><span class="col-type">UUID PK</span><span class="col-null">NOT NULL</span><span class="col-desc">Primary key, server-generated UUID.</span></div>
+        <div class="col-row"><span class="col-name">google_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">Google account sub. Unique. Null if GitHub-only user.</span></div>
+        <div class="col-row"><span class="col-name">github_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">GitHub user ID. Unique. Indexed.</span></div>
+        <div class="col-row"><span class="col-name">email</span><span class="col-type">TEXT</span><span class="col-null">NOT NULL</span><span class="col-desc">Unique, indexed. Primary identifier.</span></div>
+        <div class="col-row"><span class="col-name">device_id</span><span class="col-type">TEXT</span><span class="col-null">NOT NULL</span><span class="col-desc">Unique per install. Sent as X-Device-ID header on every request.</span></div>
+        <div class="col-row"><span class="col-name">country</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">ISO-3166 alpha-2 (e.g. "IN", "US"). Detected from IP on first login.</span></div>
+        <div class="col-row"><span class="col-name">payment_provider</span><span class="col-type">TEXT</span><span class="col-null">NOT NULL</span><span class="col-desc">Default "razorpay". "wise" for non-India developers.</span></div>
+        <div class="col-row"><span class="col-name">razorpay_contact_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">Razorpay Contact ID. Set on bank/UPI onboarding.</span></div>
+        <div class="col-row"><span class="col-name">razorpay_fund_account_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">Razorpay Fund Account used for Route payouts.</span></div>
+        <div class="col-row"><span class="col-name">razorpay_onboarded</span><span class="col-type">BOOLEAN</span><span class="col-null">NOT NULL</span><span class="col-desc">True once bank/UPI details verified.</span></div>
+        <div class="col-row"><span class="col-name">wise_recipient_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">Wise recipient account ID (v1/accounts).</span></div>
+        <div class="col-row"><span class="col-name">wise_currency</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">ISO-4217 currency for payouts (e.g. "USD", "EUR", "GBP").</span></div>
+        <div class="col-row"><span class="col-name">wise_onboarded</span><span class="col-type">BOOLEAN</span><span class="col-null">NOT NULL</span><span class="col-desc">True once Wise recipient account created.</span></div>
+        <div class="col-row"><span class="col-name">pending_balance</span><span class="col-type">NUMERIC(12,6)</span><span class="col-null">NOT NULL</span><span class="col-desc">USD. Earned but not yet paid out.</span></div>
+        <div class="col-row"><span class="col-name">paid_balance</span><span class="col-type">NUMERIC(12,6)</span><span class="col-null">NOT NULL</span><span class="col-desc">USD. Lifetime total paid out.</span></div>
+        <div class="col-row"><span class="col-name">hourly_cap_cents</span><span class="col-type">INTEGER</span><span class="col-null">NOT NULL</span><span class="col-desc">Fraud cap. Default 50 = $0.50/hr.</span></div>
+        <div class="col-row"><span class="col-name">daily_cap_cents</span><span class="col-type">INTEGER</span><span class="col-null">NOT NULL</span><span class="col-desc">Fraud cap. Default 500 = $5.00/day.</span></div>
+        <div class="col-row"><span class="col-name">blocked</span><span class="col-type">BOOLEAN</span><span class="col-null">NOT NULL</span><span class="col-desc">If true, all impression/click endpoints reject this developer.</span></div>
+        <div class="col-row"><span class="col-name">referral_code</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">Unique short code. Indexed. Generated on first login.</span></div>
+        <div class="col-row"><span class="col-name fk">referred_by_id</span><span class="col-type">UUID FK</span><span class="col-null">nullable</span><span class="col-desc">Self-referencing FK → developers.id. SET NULL on delete.</span></div>
+        <div class="col-row"><span class="col-name">referral_bonus_cents</span><span class="col-type">INTEGER</span><span class="col-null">NOT NULL</span><span class="col-desc">Bonus earned from referrals in USD cents.</span></div>
+        <div class="col-row"><span class="col-name">has_first_impression</span><span class="col-type">BOOLEAN</span><span class="col-null">NOT NULL</span><span class="col-desc">True after first confirmed impression. First-impression bonus flag.</span></div>
+        <div class="col-row"><span class="col-name">created_at / updated_at</span><span class="col-type">TIMESTAMP</span><span class="col-null">NOT NULL</span><span class="col-desc">Server default now(). updated_at auto-updated on every write.</span></div>
+      </div>
+    </div>
+
+    <div class="schema-table-wrap">
+      <div class="schema-header"><div class="schema-name">advertisers</div><div class="schema-desc">Companies or individuals buying ad campaigns.</div></div>
+      <div class="schema-body">
+        <div class="col-row header-row"><span>Column</span><span>Type</span><span>Null</span><span>Description</span></div>
+        <div class="col-row"><span class="col-name pk">id</span><span class="col-type">UUID PK</span><span class="col-null">NOT NULL</span><span class="col-desc">Primary key.</span></div>
+        <div class="col-row"><span class="col-name">email</span><span class="col-type">TEXT</span><span class="col-null">NOT NULL</span><span class="col-desc">Unique, indexed. Login identifier.</span></div>
+        <div class="col-row"><span class="col-name">name</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">Company or individual name.</span></div>
+        <div class="col-row"><span class="col-name">stripe_customer_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc" style="color:var(--red);">Legacy — Stripe removed. Never written.</span></div>
+        <div class="col-row"><span class="col-name">created_at / updated_at</span><span class="col-type">TIMESTAMP</span><span class="col-null">NOT NULL</span><span class="col-desc"></span></div>
+      </div>
+    </div>
+
+    <div class="schema-table-wrap">
+      <div class="schema-header"><div class="schema-name">campaigns</div><div class="schema-desc">Ad campaign. Status drives the auction — only "active" campaigns enter the Redis ZSET.</div></div>
+      <div class="schema-body">
+        <div class="col-row header-row"><span>Column</span><span>Type</span><span>Null</span><span>Description</span></div>
+        <div class="col-row"><span class="col-name pk">id</span><span class="col-type">UUID PK</span><span class="col-null">NOT NULL</span><span class="col-desc"></span></div>
+        <div class="col-row"><span class="col-name fk">advertiser_id</span><span class="col-type">UUID FK</span><span class="col-null">NOT NULL</span><span class="col-desc">→ advertisers.id RESTRICT. Indexed.</span></div>
+        <div class="col-row"><span class="col-name">creative_text</span><span class="col-type">TEXT</span><span class="col-null">NOT NULL</span><span class="col-desc">Ad copy shown in the AI spinner.</span></div>
+        <div class="col-row"><span class="col-name">destination_url</span><span class="col-type">TEXT</span><span class="col-null">NOT NULL</span><span class="col-desc">URL opened on ad click.</span></div>
+        <div class="col-row"><span class="col-name">bid_cpm</span><span class="col-type">NUMERIC(10,4)</span><span class="col-null">NOT NULL</span><span class="col-desc">Cost-per-thousand impressions in USD. Auction score in Redis ZSET.</span></div>
+        <div class="col-row"><span class="col-name">click_multiplier</span><span class="col-type">INTEGER</span><span class="col-null">NOT NULL</span><span class="col-desc">Default 50. Click earns 50x the per-impression rate.</span></div>
+        <div class="col-row"><span class="col-name">impressions_purchased</span><span class="col-type">INTEGER</span><span class="col-null">NOT NULL</span><span class="col-desc">Total impressions paid for.</span></div>
+        <div class="col-row"><span class="col-name">impressions_served</span><span class="col-type">INTEGER</span><span class="col-null">NOT NULL</span><span class="col-desc">Running count. Campaign exhausted when served >= purchased.</span></div>
+        <div class="col-row"><span class="col-name">clicks_count</span><span class="col-type">INTEGER</span><span class="col-null">NOT NULL</span><span class="col-desc">Total clicks on this campaign.</span></div>
+        <div class="col-row"><span class="col-name">total_spend</span><span class="col-type">NUMERIC(10,4)</span><span class="col-null">NOT NULL</span><span class="col-desc">Running USD spend.</span></div>
+        <div class="col-row"><span class="col-name">status</span><span class="col-type">TEXT</span><span class="col-null">NOT NULL</span><span class="col-desc">Indexed. Flow: <code>pending_payment</code> → <code>active</code> → <code>exhausted</code> | <code>paused</code> | <code>cancelled</code></span></div>
+        <div class="col-row"><span class="col-name">stripe_payment_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc" style="color:var(--accent);">Repurposed: now stores Razorpay payment_id. Field name is legacy.</span></div>
+        <div class="col-row"><span class="col-name">created_at / updated_at</span><span class="col-type">TIMESTAMP</span><span class="col-null">NOT NULL</span><span class="col-desc"></span></div>
+      </div>
+    </div>
+
+    <div class="schema-table-wrap">
+      <div class="schema-header"><div class="schema-name">impressions</div><div class="schema-desc">One row per confirmed ad view (>=5 s). Highest-volume table.</div></div>
+      <div class="schema-body">
+        <div class="col-row header-row"><span>Column</span><span>Type</span><span>Null</span><span>Description</span></div>
+        <div class="col-row"><span class="col-name pk">impression_id</span><span class="col-type">TEXT PK</span><span class="col-null">NOT NULL</span><span class="col-desc">nanoid generated by backend at impression creation.</span></div>
+        <div class="col-row"><span class="col-name fk">campaign_id</span><span class="col-type">UUID FK</span><span class="col-null">NOT NULL</span><span class="col-desc">→ campaigns.id RESTRICT.</span></div>
+        <div class="col-row"><span class="col-name fk">developer_id</span><span class="col-type">UUID FK</span><span class="col-null">NOT NULL</span><span class="col-desc">→ developers.id RESTRICT.</span></div>
+        <div class="col-row"><span class="col-name">surface</span><span class="col-type">TEXT</span><span class="col-null">NOT NULL</span><span class="col-desc">Values: <code>claude_code_webview</code> | <code>codex_webview</code> | <code>cli</code></span></div>
+        <div class="col-row"><span class="col-name">duration_ms</span><span class="col-type">INTEGER</span><span class="col-null">NOT NULL</span><span class="col-desc">Milliseconds the ad was visible.</span></div>
+        <div class="col-row"><span class="col-name">developer_earn</span><span class="col-type">NUMERIC(10,6)</span><span class="col-null">NOT NULL</span><span class="col-desc">USD credited to developer for this impression.</span></div>
+        <div class="col-row"><span class="col-name">platform_earn</span><span class="col-type">NUMERIC(10,6)</span><span class="col-null">NOT NULL</span><span class="col-desc">USD kept by platform (50% of total).</span></div>
+        <div class="col-row"><span class="col-name">ip_address</span><span class="col-type">INET</span><span class="col-null">nullable</span><span class="col-desc">PostgreSQL native INET type. Stored for fraud analysis.</span></div>
+        <div class="col-row"><span class="col-name">confirmed_at</span><span class="col-type">TIMESTAMP</span><span class="col-null">NOT NULL</span><span class="col-desc">Composite indexes: (developer_id, confirmed_at) and (campaign_id, confirmed_at).</span></div>
+      </div>
+    </div>
+
+    <div class="schema-table-wrap">
+      <div class="schema-header"><div class="schema-name">clicks</div><div class="schema-desc">One-to-one with impressions. Only created when developer clicks the ad link.</div></div>
+      <div class="schema-body">
+        <div class="col-row header-row"><span>Column</span><span>Type</span><span>Null</span><span>Description</span></div>
+        <div class="col-row"><span class="col-name pk">id</span><span class="col-type">UUID PK</span><span class="col-null">NOT NULL</span><span class="col-desc"></span></div>
+        <div class="col-row"><span class="col-name fk">impression_id</span><span class="col-type">TEXT FK</span><span class="col-null">NOT NULL</span><span class="col-desc">→ impressions.impression_id RESTRICT. UNIQUE — one click per impression.</span></div>
+        <div class="col-row"><span class="col-name fk">campaign_id</span><span class="col-type">UUID FK</span><span class="col-null">NOT NULL</span><span class="col-desc">→ campaigns.id RESTRICT.</span></div>
+        <div class="col-row"><span class="col-name fk">developer_id</span><span class="col-type">UUID FK</span><span class="col-null">NOT NULL</span><span class="col-desc">→ developers.id. Composite index with clicked_at.</span></div>
+        <div class="col-row"><span class="col-name">developer_earn</span><span class="col-type">NUMERIC(10,6)</span><span class="col-null">NOT NULL</span><span class="col-desc">USD earned for this click.</span></div>
+        <div class="col-row"><span class="col-name">platform_earn</span><span class="col-type">NUMERIC(10,6)</span><span class="col-null">NOT NULL</span><span class="col-desc">Platform share of click revenue.</span></div>
+        <div class="col-row"><span class="col-name">clicked_at</span><span class="col-type">TIMESTAMP</span><span class="col-null">NOT NULL</span><span class="col-desc">Composite index: (developer_id, clicked_at).</span></div>
+      </div>
+    </div>
+
+    <div class="schema-table-wrap">
+      <div class="schema-header"><div class="schema-name">payouts</div><div class="schema-desc">Developer payout requests. Partial unique index: one pending payout per developer at a time.</div></div>
+      <div class="schema-body">
+        <div class="col-row header-row"><span>Column</span><span>Type</span><span>Null</span><span>Description</span></div>
+        <div class="col-row"><span class="col-name pk">id</span><span class="col-type">UUID PK</span><span class="col-null">NOT NULL</span><span class="col-desc"></span></div>
+        <div class="col-row"><span class="col-name fk">developer_id</span><span class="col-type">UUID FK</span><span class="col-null">NOT NULL</span><span class="col-desc">→ developers.id RESTRICT. Partial unique on status='pending'.</span></div>
+        <div class="col-row"><span class="col-name">amount_cents</span><span class="col-type">INTEGER</span><span class="col-null">NOT NULL</span><span class="col-desc">USD cents. Min 1000 = $10.00.</span></div>
+        <div class="col-row"><span class="col-name">provider</span><span class="col-type">TEXT</span><span class="col-null">NOT NULL</span><span class="col-desc">Values: <code>razorpay</code> | <code>wise</code></span></div>
+        <div class="col-row"><span class="col-name">razorpay_payout_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">Set by RazorpayService or webhook.</span></div>
+        <div class="col-row"><span class="col-name">amount_inr_paise</span><span class="col-type">INTEGER</span><span class="col-null">nullable</span><span class="col-desc">INR paise equivalent. Only set for Razorpay payouts.</span></div>
+        <div class="col-row"><span class="col-name">wise_transfer_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">Set by WiseService after transfer creation.</span></div>
+        <div class="col-row"><span class="col-name">stripe_transfer_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc" style="color:var(--red);">Legacy — Stripe removed. Never written.</span></div>
+        <div class="col-row"><span class="col-name">stripe_payout_id</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc" style="color:var(--red);">Legacy — Stripe removed. Never written.</span></div>
+        <div class="col-row"><span class="col-name">status</span><span class="col-type">TEXT</span><span class="col-null">NOT NULL</span><span class="col-desc">Flow: <code>pending</code> → <code>processing</code> → <code>completed</code> | <code>failed</code></span></div>
+        <div class="col-row"><span class="col-name">failure_reason</span><span class="col-type">TEXT</span><span class="col-null">nullable</span><span class="col-desc">Error message when status = failed.</span></div>
+        <div class="col-row"><span class="col-name">requested_at</span><span class="col-type">TIMESTAMP</span><span class="col-null">NOT NULL</span><span class="col-desc"></span></div>
+        <div class="col-row"><span class="col-name">completed_at</span><span class="col-type">TIMESTAMP</span><span class="col-null">nullable</span><span class="col-desc">Set on completion or failure.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ Marketplace Publishing ─────────────────────────────────────── -->
+  <div class="section" id="marketplace">
+    <div class="sec-tag">Extension</div>
+    <div class="sec-title">VS Code Marketplace Publishing</div>
+    <div class="sec-desc">Publishing to the Visual Studio Marketplace makes the extension installable worldwide. Publisher ID in package.json: <code>spinads</code>. Version: <code>1.0.0</code>.</div>
+
+    <h3>One-time setup</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Create publisher account</div>
+          <div class="step-desc">Go to <code>marketplace.visualstudio.com/manage</code>. Create publisher with ID <code>spinads</code>. Requires a Microsoft account.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Generate Personal Access Token (PAT)</div>
+          <div class="step-desc">Azure DevOps (dev.azure.com) → User Settings → Personal Access Tokens. Scope: <strong>Marketplace → Manage</strong>. Save the token — shown only once.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Login with vsce</div>
+          <div class="step-desc"><pre>npx vsce login spinads
+<span class="c"># Enter your PAT when prompted</span></pre></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Add required marketplace fields to package.json</div>
+          <div class="step-desc"><pre><span class="k">"icon"</span><span class="c">: "assets/icon.png",</span>  <span class="c">// 128x128 PNG required</span>
+<span class="k">"repository"</span><span class="c">: { "type": "git", "url": "https://github.com/yourorg/spinads" },</span>
+<span class="k">"license"</span><span class="c">: "MIT",</span>
+<span class="k">"homepage"</span><span class="c">: "https://spinads.dev"</span></pre></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <h3>Every release — commands</h3>
+    <pre><span class="c"># Build + type check</span>
+npm run type-check &amp;&amp; npm run build
+
+<span class="c"># Package into .vsix (inspect before publishing)</span>
+npx vsce package
+
+<span class="c"># Publish directly</span>
+npx vsce publish
+
+<span class="c"># Or publish a specific .vsix</span>
+npx vsce publish --packagePath spinads-1.2.0.vsix</pre>
+
+    <h3>Auto-update behaviour</h3>
+    <p>VS Code checks the marketplace on every startup. If a newer version exists it downloads and installs silently in the background, then prompts the user to reload the window. <strong>No manual distribution needed</strong> once published.</p>
+  </div>
+
+  <!-- ─ Versioning ─────────────────────────────────────────────────── -->
+  <div class="section" id="versioning">
+    <div class="sec-tag">Extension</div>
+    <div class="sec-title">Versioning Strategy</div>
+    <div class="sec-desc">Current version: <code>1.0.0</code>. Follows semantic versioning — MAJOR.MINOR.PATCH. The <code>version</code> field in <code>extension/package.json</code> is the single source of truth.</div>
+
+    <div class="g3" style="margin-bottom: 28px;">
+      <div class="card" style="border-top: 2px solid var(--red);">
+        <div class="card-title">MAJOR · X.0.0</div>
+        <p>Breaking changes. New minimum VS Code version. Auth method change that logs all users out. Removes a command or setting users rely on.</p>
+        <pre style="margin-top:10px; font-size:11px;">npx vsce publish major</pre>
+      </div>
+      <div class="card" style="border-top: 2px solid var(--blue);">
+        <div class="card-title">MINOR · 1.X.0</div>
+        <p>New features: new adapter (Cursor, Windsurf), new commands, new status bar behaviour. Backwards compatible.</p>
+        <pre style="margin-top:10px; font-size:11px;">npx vsce publish minor</pre>
+      </div>
+      <div class="card" style="border-top: 2px solid var(--teal);">
+        <div class="card-title">PATCH · 1.0.X</div>
+        <p>Bug fixes, performance improvements, dependency bumps. No new behaviour. Most common release type.</p>
+        <pre style="margin-top:10px; font-size:11px;">npx vsce publish patch</pre>
+      </div>
+    </div>
+
+    <h3>Version bump workflow</h3>
+    <pre><span class="c"># Option A — vsce bumps automatically</span>
+npx vsce publish patch    <span class="c"># edits package.json, publishes, done</span>
+
+<span class="c"># Option B — manual (more control, creates git tag)</span>
+npm version patch         <span class="c"># edits package.json + creates git tag</span>
+npx vsce package          <span class="c"># inspect .vsix before publishing</span>
+npx vsce publish
+git push --tags</pre>
+
+    <hr class="divider">
+
+    <h3>Remote kill switch + min_version enforcement</h3>
+    <p>Your extension already polls <code>GET /api/v1/config</code> for <code>global_kill_switch</code>. Add a <code>min_version</code> field to this response — the extension compares it against its own version and shows a "please update" notification if behind. VS Code auto-updates in the background, but the notification accelerates it for critical fixes.</p>
+
+    <hr class="divider">
+
+    <h3>What changes trigger which version</h3>
+    <table class="tbl">
+      <thead><tr><th>Change</th><th>Bump</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td>Fix impression tracker not counting focused time</td><td><span class="badge b-pass">patch</span></td><td>Bug fix, no user-facing behaviour change.</td></tr>
+        <tr><td>Add Cursor IDE adapter</td><td><span class="badge b-opt">minor</span></td><td>New feature, nothing removed.</td></tr>
+        <tr><td>Add GitHub OAuth sign-in option</td><td><span class="badge b-opt">minor</span></td><td>New capability, additive.</td></tr>
+        <tr><td>Change backend API from v1 to v2</td><td><span class="badge b-warn">minor</span></td><td>Internal only, no user-facing break.</td></tr>
+        <tr><td>Require VS Code 1.95+ (uses new API)</td><td><span class="badge b-req">major</span></td><td>Drops users on older VS Code.</td></tr>
+        <tr><td>Remove <code>spinads.showInStatusBar</code> setting</td><td><span class="badge b-req">major</span></td><td>Breaking: users with this in settings.json lose status bar.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<script>
+  const sections = document.querySelectorAll('.section[id]');
+  const links = document.querySelectorAll('nav a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector('nav a[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => obs.observe(s));
+</script>

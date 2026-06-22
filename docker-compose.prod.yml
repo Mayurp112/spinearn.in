@@ -1,0 +1,106 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: spinads_postgres_prod
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+
+  redis:
+    image: redis:7-alpine
+    container_name: spinads_redis_prod
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD} --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    restart: always
+
+  backend:
+    image: spinads/backend:${VERSION:-latest}
+    container_name: spinads_backend_prod
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env.prod
+    restart: always
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 1g
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
+
+  celery:
+    image: spinads/backend:${VERSION:-latest}
+    container_name: spinads_celery_prod
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env.prod
+    restart: always
+    command: celery -A app.tasks.celery_app worker --loglevel=warning --concurrency=8
+
+  celery-beat:
+    image: spinads/backend:${VERSION:-latest}
+    container_name: spinads_celery_beat_prod
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env.prod
+    restart: always
+    command: celery -A app.tasks.celery_app beat --loglevel=warning
+
+  frontend:
+    image: spinads/frontend:${VERSION:-latest}
+    container_name: spinads_frontend_prod
+    depends_on:
+      - backend
+    env_file:
+      - ./frontend/.env.prod
+    restart: always
+
+  nginx:
+    image: nginx:alpine
+    container_name: spinads_nginx_prod
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.prod.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    restart: always
+
+volumes:
+  postgres_data:
+  redis_data:

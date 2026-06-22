@@ -1,0 +1,74 @@
+{
+  "name": "spinads",
+  "displayName": "SpinAds — Earn from AI coding tools",
+  "description": "Earn revenue from sponsored messages shown in Claude Code and Codex spinners while you code.",
+  "version": "1.0.0",
+  "publisher": "spinads",
+  "private": true,
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": ["Other"],
+  "keywords": ["monetization", "claude code", "codex", "ads", "earnings"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "spinads.signIn",
+        "title": "SpinAds: Sign In"
+      },
+      {
+        "command": "spinads.signOut",
+        "title": "SpinAds: Sign Out"
+      },
+      {
+        "command": "spinads.showDashboard",
+        "title": "SpinAds: Open Dashboard"
+      },
+      {
+        "command": "spinads.showStatus",
+        "title": "SpinAds: Show Status"
+      }
+    ],
+    "configuration": {
+      "title": "SpinAds",
+      "properties": {
+        "spinads.apiUrl": {
+          "type": "string",
+          "default": "https://api.spinads.dev",
+          "description": "SpinAds API base URL"
+        },
+        "spinads.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable SpinAds"
+        },
+        "spinads.showInStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show earnings in VS Code status bar"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.config.js",
+    "watch": "node esbuild.config.js --watch",
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "test": "vitest run",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "nanoid": "^5.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.90.0",
+    "esbuild": "^0.24.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "@vscode/vsce": "^3.2.1"
+  }
+}

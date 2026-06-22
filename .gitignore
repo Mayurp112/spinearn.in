@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+# Environment / secrets — NEVER commit these
+.env
+.env.local
+.env.production
+.env.staging
+*.env
+
+# Node / Extension
+node_modules/
+extension/out/
+extension/dist/
+*.vsix
+
+# Frontend Next.js
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+
+# Logs
+*.log
+dev-server.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Docker volumes (local data)
+postgres_data/
+redis_data/
+
+# Build artifacts
+*.pyc
+*.pyd
+*.so
