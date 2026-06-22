@@ -275,7 +275,7 @@ The full Swagger UI is available at `http://localhost/api/docs` when running loc
 ## Contact
 
 **Author:** Mayur Pashte  
-**Email:** mayur.pashte@acc.ltd  
+**Email:** mayurpashte04@gmail.com 
 **Website:** [spinads.dev](https://spinads.dev)
 
 For licensing inquiries, partnership proposals, or advertiser onboarding, please contact via email.
