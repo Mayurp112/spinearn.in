@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -162,7 +162,7 @@ export default function NewCampaignPage() {
                   id="destination_url"
                   {...register("destination_url")}
                   type="url"
-                  placeholder="https://yourproduct.com?utm_source=spinads"
+                  placeholder="https://yourproduct.com?utm_source=spinearn"
                   required
                   autoComplete="url"
                   aria-required="true"
@@ -302,7 +302,7 @@ export default function NewCampaignPage() {
               {[
                 "Submit your 1-line ad copy and bid CPM",
                 "Pay via Stripe Checkout — funds held securely",
-                "SpinAds runs an English-ascending auction in real time",
+                "SpinEarn runs an English-ascending auction in real time",
                 "Highest bidder's ad shows in developer spinners",
                 "50% of your CPM goes directly to the developer",
               ].map((text, i) => (

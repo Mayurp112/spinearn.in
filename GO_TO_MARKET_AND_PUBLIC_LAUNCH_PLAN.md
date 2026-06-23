@@ -1,4 +1,4 @@
-# SpinEarn / SpinAds — Go-to-Market & Public Launch Plan
+﻿# SpinEarn / SpinEarn — Go-to-Market & Public Launch Plan
 
 > **Tagline:** Get paid while Claude Code thinks.
 > **Status document:** Treat this as a living playbook. Update targets monthly.
@@ -487,20 +487,20 @@ Email Claude Code community managers at Anthropic. Pitch: "SpinEarn monetizes Cl
 > CTA: Install Free
 
 **Twitter/X Ad copy:**
-> Thread-style ad: "I stare at the Claude Code spinner 50+ times a day. I built an extension that pays me for it. [screenshot] → spinads.dev"
+> Thread-style ad: "I stare at the Claude Code spinner 50+ times a day. I built an extension that pays me for it. [screenshot] → spinearn.in"
 
 **Google Ads keywords:**
 - `claude code extension` (high intent)
 - `vscode monetization extension`
 - `developer passive income extension`
-- `spinads.dev` (branded)
+- `spinearn.in` (branded)
 - `kickbacks.ai alternative` (competitor)
 
 ---
 
 ### Phase 3 — Scale (Month 5+, $1,000+/month)
 
-**Retargeting setup:** Install a pixel on spinads.dev homepage. Retarget visitors who did not install the extension. Ad copy: "Still thinking about SpinEarn? First payout takes 3 minutes to set up. [earnings screenshot]"
+**Retargeting setup:** Install a pixel on spinearn.in homepage. Retarget visitors who did not install the extension. Ad copy: "Still thinking about SpinEarn? First payout takes 3 minutes to set up. [earnings screenshot]"
 
 **Developer newsletter sponsorships (with approximate rates):**
 - **Bytes.dev** (JavaScript newsletter, 200k+ subscribers): ~$2,000/issue. Negotiate a 3-issue package.
@@ -583,13 +583,13 @@ These are dev tool companies whose core customer is exactly the developer using 
 > - 5-second impression blocks, 1,000 impressions per block
 > - Clicks worth 50× impressions in bidding weight
 >
-> Minimum buy: 1 block at $[floor price]. Self-serve auction at spinads.dev/advertise.
+> Minimum buy: 1 block at $[floor price]. Self-serve auction at spinearn.in/advertise.
 >
 > Would it make sense to run a test campaign? Happy to share our audience breakdown and fraud prevention architecture.
 >
 > Best,
 > Mayur
-> spinads.dev
+> spinearn.in
 
 **Follow-up cadence:** Email Day 1, LinkedIn message Day 4, Twitter DM Day 8, final email Day 15. Do not send more than 4 touchpoints.
 
@@ -597,7 +597,7 @@ These are dev tool companies whose core customer is exactly the developer using 
 
 ### Self-Serve Portal as Key Enabler
 
-The self-serve advertiser portal (spinads.dev/advertise) is mandatory before scaling advertiser acquisition. Without it, every advertiser requires manual onboarding — this does not scale.
+The self-serve advertiser portal (spinearn.in/advertise) is mandatory before scaling advertiser acquisition. Without it, every advertiser requires manual onboarding — this does not scale.
 
 The portal must show:
 - Live bid queue (public — this is social proof of a functioning market)
@@ -616,7 +616,7 @@ The portal must show:
 
 **Carbon Ads:** Carbon Ads serves developer-focused properties. Contact them about a SpinEarn partnership — they may be able to fill unsold inventory or co-sell.
 
-**Caveat:** Both channels take 30–40% of revenue. Use them only for inventory that would otherwise go unfilled. Direct advertisers via spinads.dev/advertise are always preferable.
+**Caveat:** Both channels take 30–40% of revenue. Use them only for inventory that would otherwise go unfilled. Direct advertisers via spinearn.in/advertise are always preferable.
 
 ---
 
@@ -626,7 +626,7 @@ The portal must show:
 
 **Week 1–2: Infrastructure and accounts**
 - [ ] VS Code Marketplace developer account verified and ready to publish
-- [ ] spinads.dev landing page live with email capture
+- [ ] spinearn.in landing page live with email capture
 - [ ] Twitter/X account @spinearns or @spinads (secure handles now)
 - [ ] LinkedIn company page created
 - [ ] GitHub repo public (open-source client)
@@ -783,7 +783,7 @@ If Kickbacks posts on HN on the same day: do not post Show HN that day. Wait 3�
 - [ ] Draft Product Hunt listing assets (5 screenshots, demo GIF, 300-word description)
 - [ ] Recruit 20 beta developer users from your network
 - [ ] Email 5 DevRel managers at Tier 1 advertisers with the cold outreach template above
-- [ ] Set up Google Analytics 4 on spinads.dev with install-click and advertiser-signup events
+- [ ] Set up Google Analytics 4 on spinearn.in with install-click and advertiser-signup events
 - [ ] Create the public payout status page
 - [ ] Confirm self-serve advertiser portal is functional with Razorpay and Wise flows
 

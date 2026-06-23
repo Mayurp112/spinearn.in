@@ -1,4 +1,4 @@
-import asyncio
+﻿import asyncio
 import uuid
 from collections.abc import AsyncGenerator
 from decimal import Decimal
@@ -18,7 +18,7 @@ from app.models.advertiser import Advertiser
 from app.models.campaign import Campaign
 from app.models.developer import Developer
 
-TEST_DATABASE_URL = "postgresql+asyncpg://spinads:spinads_dev_password@localhost:5432/spinads_test"
+TEST_DATABASE_URL = "postgresql+asyncpg://spinearn:spinearn_dev_password@localhost:5432/spinearn_test"
 
 
 @pytest.fixture(scope="session")
@@ -116,8 +116,8 @@ async def advertiser(db: AsyncSession) -> Advertiser:
 async def active_campaign(db: AsyncSession, advertiser: Advertiser) -> Campaign:
     camp = Campaign(
         advertiser_id=advertiser.id,
-        creative_text="Test Ad: Try SpinAds today →",
-        destination_url="https://spinads.example.com",
+        creative_text="Test Ad: Try SpinEarn today →",
+        destination_url="https://spinearn.example.com",
         bid_cpm=Decimal("5.00"),
         impressions_purchased=1000,
         status="active",

@@ -1,11 +1,11 @@
-import * as vscode from "vscode";
+﻿import * as vscode from "vscode";
 
 export class SelfUpdateChecker {
   private static readonly MARKETPLACE_URL =
-    "https://marketplace.visualstudio.com/items?itemName=spinads.spinads";
+    "https://marketplace.visualstudio.com/items?itemName=spinearn.spinearn";
 
   static async check(): Promise<void> {
-    const currentVersion = vscode.extensions.getExtension("spinads.spinads")?.packageJSON
+    const currentVersion = vscode.extensions.getExtension("spinearn.spinearn")?.packageJSON
       .version as string | undefined;
 
     if (!currentVersion) return;
@@ -23,7 +23,7 @@ export class SelfUpdateChecker {
             filters: [
               {
                 criteria: [
-                  { filterType: 7, value: "spinads.spinads" },
+                  { filterType: 7, value: "spinearn.spinearn" },
                 ],
               },
             ],
@@ -47,7 +47,7 @@ export class SelfUpdateChecker {
 
       if (latestVersion && latestVersion !== currentVersion) {
         const action = await vscode.window.showInformationMessage(
-          `SpinAds v${latestVersion} is available (you have v${currentVersion})`,
+          `SpinEarn v${latestVersion} is available (you have v${currentVersion})`,
           "Update Now",
           "Dismiss",
         );

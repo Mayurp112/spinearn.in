@@ -1,4 +1,4 @@
-import * as vscode from "vscode";
+﻿import * as vscode from "vscode";
 
 export class ApiError extends Error {
   constructor(
@@ -17,8 +17,8 @@ export class ApiClient {
 
   constructor(context: vscode.ExtensionContext) {
     this._baseUrl = vscode.workspace
-      .getConfiguration("spinads")
-      .get<string>("apiUrl", "https://api.spinads.dev");
+      .getConfiguration("spinearn")
+      .get<string>("apiUrl", "https://api.spinearn.in");
 
     this._deviceId = this._getOrCreateDeviceId(context);
   }
@@ -28,11 +28,11 @@ export class ApiClient {
   }
 
   private _getOrCreateDeviceId(context: vscode.ExtensionContext): string {
-    const existing = context.globalState.get<string>("spinads.deviceId");
+    const existing = context.globalState.get<string>("spinearn.iniceId");
     if (existing) return existing;
 
     const newId = this._generateUuid();
-    context.globalState.update("spinads.deviceId", newId);
+    context.globalState.update("spinearn.iniceId", newId);
     return newId;
   }
 

@@ -1,4 +1,4 @@
-<title>SpinEarn — Project Reference</title>
+﻿<title>SpinEarn — Project Reference</title>
 <style>
   :root {
     --ground:   #0F1419;
@@ -752,8 +752,8 @@
     <table class="tbl">
       <thead><tr><th>Variable</th><th>Required</th><th>Example</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td class="mono">NEXT_PUBLIC_API_URL</td><td><span class="badge b-req">Required</span></td><td class="mono">https://api.spinads.dev</td><td>Backend API URL. <code>NEXT_PUBLIC_</code> prefix exposes it to browser.</td></tr>
-        <tr><td class="mono">NEXTAUTH_URL</td><td><span class="badge b-req">Required</span></td><td class="mono">https://spinads.dev</td><td>Full URL of your Next.js app. NextAuth v5 requires this.</td></tr>
+        <tr><td class="mono">NEXT_PUBLIC_API_URL</td><td><span class="badge b-req">Required</span></td><td class="mono">https://api.spinearn.in</td><td>Backend API URL. <code>NEXT_PUBLIC_</code> prefix exposes it to browser.</td></tr>
+        <tr><td class="mono">NEXTAUTH_URL</td><td><span class="badge b-req">Required</span></td><td class="mono">https://spinearn.in</td><td>Full URL of your Next.js app. NextAuth v5 requires this.</td></tr>
         <tr><td class="mono">NEXTAUTH_SECRET</td><td><span class="badge b-req">Required</span></td><td class="dim">—</td><td>Random string for session encryption. Generate: <code>openssl rand -hex 32</code></td></tr>
         <tr><td class="mono">AUTH_GOOGLE_ID</td><td><span class="badge b-req">Required</span></td><td class="dim">—</td><td>Same Google OAuth client ID as backend.</td></tr>
         <tr><td class="mono">AUTH_GOOGLE_SECRET</td><td><span class="badge b-req">Required</span></td><td class="dim">—</td><td>Same Google OAuth client secret as backend.</td></tr>
@@ -766,9 +766,9 @@
     <table class="tbl">
       <thead><tr><th>Setting key</th><th>Default</th><th>Notes</th></tr></thead>
       <tbody>
-        <tr><td class="mono">spinads.apiUrl</td><td class="mono">https://api.spinads.dev</td><td>Overridable per workspace. Used by ApiClient.</td></tr>
-        <tr><td class="mono">spinads.enabled</td><td class="mono">true</td><td>Global kill switch. Also controlled remotely via <code>/api/v1/config</code>.</td></tr>
-        <tr><td class="mono">spinads.showInStatusBar</td><td class="mono">true</td><td>Shows live earnings in VS Code status bar.</td></tr>
+        <tr><td class="mono">spinearn.apiUrl</td><td class="mono">https://api.spinearn.in</td><td>Overridable per workspace. Used by ApiClient.</td></tr>
+        <tr><td class="mono">spinearn.enabled</td><td class="mono">true</td><td>Global kill switch. Also controlled remotely via <code>/api/v1/config</code>.</td></tr>
+        <tr><td class="mono">spinearn.showInStatusBar</td><td class="mono">true</td><td>Shows live earnings in VS Code status bar.</td></tr>
       </tbody>
     </table>
   </div>
@@ -929,7 +929,7 @@
           <div class="step-desc"><pre><span class="k">"icon"</span><span class="c">: "assets/icon.png",</span>  <span class="c">// 128x128 PNG required</span>
 <span class="k">"repository"</span><span class="c">: { "type": "git", "url": "https://github.com/yourorg/spinads" },</span>
 <span class="k">"license"</span><span class="c">: "MIT",</span>
-<span class="k">"homepage"</span><span class="c">: "https://spinads.dev"</span></pre></div>
+<span class="k">"homepage"</span><span class="c">: "https://spinearn.in"</span></pre></div>
         </div>
       </div>
     </div>
@@ -1003,7 +1003,7 @@ git push --tags</pre>
         <tr><td>Add GitHub OAuth sign-in option</td><td><span class="badge b-opt">minor</span></td><td>New capability, additive.</td></tr>
         <tr><td>Change backend API from v1 to v2</td><td><span class="badge b-warn">minor</span></td><td>Internal only, no user-facing break.</td></tr>
         <tr><td>Require VS Code 1.95+ (uses new API)</td><td><span class="badge b-req">major</span></td><td>Drops users on older VS Code.</td></tr>
-        <tr><td>Remove <code>spinads.showInStatusBar</code> setting</td><td><span class="badge b-req">major</span></td><td>Breaking: users with this in settings.json lose status bar.</td></tr>
+        <tr><td>Remove <code>spinearn.showInStatusBar</code> setting</td><td><span class="badge b-req">major</span></td><td>Breaking: users with this in settings.json lose status bar.</td></tr>
       </tbody>
     </table>
   </div>

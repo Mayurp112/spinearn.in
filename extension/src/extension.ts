@@ -1,4 +1,4 @@
-import * as vscode from "vscode";
+﻿import * as vscode from "vscode";
 import { AdRotationManager } from "./activation/adRotation";
 import { SelfUpdateChecker } from "./activation/selfUpdate";
 import { StatusBarManager } from "./activation/statusBar";
@@ -15,7 +15,7 @@ const DISPOSABLES: vscode.Disposable[] = [];
 let _initialized = false;
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
-  const enabled = vscode.workspace.getConfiguration("spinads").get<boolean>("enabled", true);
+  const enabled = vscode.workspace.getConfiguration("spinearn").get<boolean>("enabled", true);
   if (!enabled) return;
 
   // ── Core services ───────────────────────────────────────────────────────
@@ -91,33 +91,33 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   initAdapters();
 
   // ── Commands ────────────────────────────────────────────────────────────
-  const signInCmd = vscode.commands.registerCommand("spinads.signIn", async () => {
+  const signInCmd = vscode.commands.registerCommand("spinearn.signIn", async () => {
     const success = await authManager.signIn();
     if (success) {
-      vscode.window.showInformationMessage("SpinAds: Signed in! You're now earning from AI spinner ads.");
+      vscode.window.showInformationMessage("SpinEarn: Signed in! You're now earning from AI spinner ads.");
     }
   });
 
-  const signOutCmd = vscode.commands.registerCommand("spinads.signOut", async () => {
+  const signOutCmd = vscode.commands.registerCommand("spinearn.signOut", async () => {
     await authManager.signOut();
-    vscode.window.showInformationMessage("SpinAds: Signed out.");
+    vscode.window.showInformationMessage("SpinEarn: Signed out.");
   });
 
-  const showDashboardCmd = vscode.commands.registerCommand("spinads.showDashboard", () => {
-    const apiUrl = vscode.workspace.getConfiguration("spinads").get<string>("apiUrl", "https://api.spinads.dev");
+  const showDashboardCmd = vscode.commands.registerCommand("spinearn.showDashboard", () => {
+    const apiUrl = vscode.workspace.getConfiguration("spinearn").get<string>("apiUrl", "https://api.spinearn.in");
     const dashboardUrl = apiUrl.replace("api.", "").replace("8000", "3000") + "/dashboard";
     void vscode.env.openExternal(vscode.Uri.parse(dashboardUrl));
   });
 
-  const showStatusCmd = vscode.commands.registerCommand("spinads.showStatus", async () => {
+  const showStatusCmd = vscode.commands.registerCommand("spinearn.showStatus", async () => {
     const token = authManager.getToken();
     if (!token) {
       const action = await vscode.window.showInformationMessage(
-        "SpinAds: Sign in to start earning from AI spinner ads.",
+        "SpinEarn: Sign in to start earning from AI spinner ads.",
         "Sign In",
       );
       if (action === "Sign In") {
-        await vscode.commands.executeCommand("spinads.signIn");
+        await vscode.commands.executeCommand("spinearn.signIn");
       }
       return;
     }
@@ -136,14 +136,14 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
       ].join(" · ");
 
       const action = await vscode.window.showInformationMessage(
-        `SpinAds Earnings — ${msg}`,
+        `SpinEarn Earnings — ${msg}`,
         "Open Dashboard",
       );
       if (action === "Open Dashboard") {
-        await vscode.commands.executeCommand("spinads.showDashboard");
+        await vscode.commands.executeCommand("spinearn.showDashboard");
       }
     } catch {
-      vscode.window.showErrorMessage("SpinAds: Failed to fetch balance. Check your connection.");
+      vscode.window.showErrorMessage("SpinEarn: Failed to fetch balance. Check your connection.");
     }
   });
 

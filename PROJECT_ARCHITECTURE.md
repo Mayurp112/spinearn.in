@@ -1,4 +1,4 @@
-# SpinEarn / SpinAds — Project Architecture
+﻿# SpinEarn / SpinEarn — Project Architecture
 
 > Version 1.0.0 | Last updated: 2026-06-22
 
@@ -27,7 +27,7 @@
 
 ## 1. Project Overview and Vision
 
-**SpinEarn** (published as SpinAds) is a VS Code extension that monetizes developer idle time by displaying auctioned advertisements inside the AI spinner — the wait state shown while Claude Code or Codex processes a prompt. Developers earn 50% of every ad dollar their spinner generates. Advertisers get guaranteed human eyeballs from a verified, high-intent engineering audience.
+**SpinEarn** (published as SpinEarn) is a VS Code extension that monetizes developer idle time by displaying auctioned advertisements inside the AI spinner — the wait state shown while Claude Code or Codex processes a prompt. Developers earn 50% of every ad dollar their spinner generates. Advertisers get guaranteed human eyeballs from a verified, high-intent engineering audience.
 
 ### Value Proposition
 
@@ -940,4 +940,4 @@ spinads/
 
 ---
 
-*This document is the canonical technical reference for SpinEarn / SpinAds. Update it alongside any architectural change. All table names, column names, and API paths in this document are normative — implementation must match.*
+*This document is the canonical technical reference for SpinEarn / SpinEarn. Update it alongside any architectural change. All table names, column names, and API paths in this document are normative — implementation must match.*

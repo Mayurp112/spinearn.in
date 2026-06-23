@@ -1,4 +1,4 @@
-import { ApiClient } from "../api/client";
+﻿import { ApiClient } from "../api/client";
 
 export interface RemoteConfig {
   global_kill_switch: boolean;
@@ -59,11 +59,11 @@ export class KillSwitch {
         if (!wasKilled && config.global_kill_switch) {
           this._wasKilled = true;
           this._onKill?.();
-          console.log("SpinAds: disabled by remote config");
+          console.log("SpinEarn: disabled by remote config");
         } else if (wasKilled && !config.global_kill_switch && this._wasKilled) {
           this._wasKilled = false;
           this._onRevive?.();
-          console.log("SpinAds: re-enabled by remote config");
+          console.log("SpinEarn: re-enabled by remote config");
         }
       } catch {
         // Fail open — if we can't reach the server, continue operating

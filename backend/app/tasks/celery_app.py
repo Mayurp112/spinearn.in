@@ -1,10 +1,10 @@
-from celery import Celery
+﻿from celery import Celery
 from celery.schedules import crontab
 
 from app.config import settings
 
 celery_app = Celery(
-    "spinads",
+    "spinearn",
     broker=settings.CELERY_BROKER_URL,
     backend=settings.REDIS_URL,
     include=["app.tasks.impression_tasks", "app.tasks.payout_tasks"],

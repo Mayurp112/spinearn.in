@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -119,19 +119,19 @@ export default function EarningsPage() {
           <div className="max-w-sm">
             <h2 className="text-white font-semibold text-lg mb-2">No earnings yet for this period</h2>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Install the SpinAds VS Code extension and use Claude Code or Codex as usual.
+              Install the SpinEarn VS Code extension and use Claude Code or Codex as usual.
               Revenue appears here once impressions are confirmed.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <a
-              href="vscode:extension/spinads.spinads"
+              href="vscode:extension/spinearn.spinearn"
               className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 transition-all font-semibold text-sm shadow-lg shadow-blue-500/20"
             >
               Install Extension →
             </a>
             <a
-              href="https://marketplace.visualstudio.com/items?itemName=spinads.spinads"
+              href="https://marketplace.visualstudio.com/items?itemName=spinearn.spinearn"
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-2.5 rounded-xl border border-slate-700 hover:border-slate-600 hover:bg-slate-800 transition-all font-semibold text-sm text-slate-300"

@@ -1,4 +1,4 @@
-import * as vscode from "vscode";
+﻿import * as vscode from "vscode";
 import { ApiClient } from "../api/client";
 import { KeychainVault } from "./keychainVault";
 
@@ -49,7 +49,7 @@ export class AuthManager {
         { createIfNone: true },
       );
     } catch (err) {
-      vscode.window.showErrorMessage(`SpinAds: Sign-in failed — ${String(err)}`);
+      vscode.window.showErrorMessage(`SpinEarn: Sign-in failed — ${String(err)}`);
       return false;
     }
 
@@ -66,7 +66,7 @@ export class AuthManager {
       this._scheduleRefresh(result.access_token);
       return true;
     } catch (err) {
-      vscode.window.showErrorMessage(`SpinAds: Authentication failed — ${String(err)}`);
+      vscode.window.showErrorMessage(`SpinEarn: Authentication failed — ${String(err)}`);
       return false;
     }
   }

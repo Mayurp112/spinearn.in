@@ -1,4 +1,4 @@
-import * as vscode from "vscode";
+﻿import * as vscode from "vscode";
 import type { AdRotationManager } from "../activation/adRotation";
 import type { ClickTracker } from "../metrics/clickTracker";
 import { ImpressionTracker } from "../metrics/impressionTracker";
@@ -31,7 +31,7 @@ export class CliAdapter implements vscode.Disposable {
       vscode.StatusBarAlignment.Left,
       50,
     );
-    this._statusBarItem.command = "spinads.adClick";
+    this._statusBarItem.command = "spinearn.adClick";
 
     this._watchTerminals();
   }
@@ -100,7 +100,7 @@ export class CliAdapter implements vscode.Disposable {
     });
 
     const clickDisposable = vscode.commands.registerCommand(
-      "spinads.adClick",
+      "spinearn.adClick",
       () => {
         if (ad.impression_id && ad.click_url) {
           void this.clickTracker.openAdLink(ad.click_url, ad.impression_id);

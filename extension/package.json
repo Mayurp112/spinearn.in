@@ -1,9 +1,9 @@
-{
-  "name": "spinads",
-  "displayName": "SpinAds — Earn from AI coding tools",
+﻿{
+  "name": "spinearn",
+  "displayName": "SpinEarn — Earn from AI coding tools",
   "description": "Earn revenue from sponsored messages shown in Claude Code and Codex spinners while you code.",
   "version": "1.0.0",
-  "publisher": "spinads",
+  "publisher": "spinearn",
   "private": true,
   "engines": {
     "vscode": "^1.90.0"
@@ -15,36 +15,36 @@
   "contributes": {
     "commands": [
       {
-        "command": "spinads.signIn",
-        "title": "SpinAds: Sign In"
+        "command": "spinearn.signIn",
+        "title": "SpinEarn: Sign In"
       },
       {
-        "command": "spinads.signOut",
-        "title": "SpinAds: Sign Out"
+        "command": "spinearn.signOut",
+        "title": "SpinEarn: Sign Out"
       },
       {
-        "command": "spinads.showDashboard",
-        "title": "SpinAds: Open Dashboard"
+        "command": "spinearn.showDashboard",
+        "title": "SpinEarn: Open Dashboard"
       },
       {
-        "command": "spinads.showStatus",
-        "title": "SpinAds: Show Status"
+        "command": "spinearn.showStatus",
+        "title": "SpinEarn: Show Status"
       }
     ],
     "configuration": {
-      "title": "SpinAds",
+      "title": "SpinEarn",
       "properties": {
-        "spinads.apiUrl": {
+        "spinearn.apiUrl": {
           "type": "string",
-          "default": "https://api.spinads.dev",
-          "description": "SpinAds API base URL"
+          "default": "https://api.spinearn.in",
+          "description": "SpinEarn API base URL"
         },
-        "spinads.enabled": {
+        "spinearn.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Enable or disable SpinAds"
+          "description": "Enable or disable SpinEarn"
         },
-        "spinads.showInStatusBar": {
+        "spinearn.showInStatusBar": {
           "type": "boolean",
           "default": true,
           "description": "Show earnings in VS Code status bar"

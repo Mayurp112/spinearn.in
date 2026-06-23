@@ -1,4 +1,4 @@
-import * as vscode from "vscode";
+﻿import * as vscode from "vscode";
 import { ApiClient } from "../api/client";
 
 interface BalanceResponse {
@@ -20,14 +20,14 @@ export class StatusBarManager implements vscode.Disposable {
     private readonly getToken: () => string | undefined,
   ) {
     const showInStatusBar = vscode.workspace
-      .getConfiguration("spinads")
+      .getConfiguration("spinearn")
       .get<boolean>("showInStatusBar", true);
 
     this._item = vscode.window.createStatusBarItem(
       vscode.StatusBarAlignment.Right,
       100,
     );
-    this._item.command = "spinads.showStatus";
+    this._item.command = "spinearn.showStatus";
 
     if (showInStatusBar) {
       this._item.show();
@@ -60,9 +60,9 @@ export class StatusBarManager implements vscode.Disposable {
   }
 
   private _renderSignedOut(): void {
-    this._item.text = "$(zap) SpinAds: Sign in";
-    this._item.tooltip = "Click to sign in to SpinAds and start earning";
-    this._item.command = "spinads.signIn";
+    this._item.text = "$(zap) SpinEarn: Sign in";
+    this._item.tooltip = "Click to sign in to SpinEarn and start earning";
+    this._item.command = "spinearn.signIn";
     this._item.backgroundColor = undefined;
   }
 
@@ -84,11 +84,11 @@ export class StatusBarManager implements vscode.Disposable {
 
       this._item.text = `$(zap) Cap reached (resets in ${minsUntilReset}m)`;
       this._item.tooltip = "Daily earning cap reached. Resets at midnight UTC.";
-      this._item.command = "spinads.showStatus";
+      this._item.command = "spinearn.showStatus";
     } else {
       this._item.text = `$(zap) $${todayUSD.toFixed(2)} today · $${totalUSD.toFixed(2)} total`;
-      this._item.tooltip = `SpinAds Earnings\nToday: $${todayUSD.toFixed(4)}\nTotal available: $${totalUSD.toFixed(4)}`;
-      this._item.command = "spinads.showDashboard";
+      this._item.tooltip = `SpinEarn Earnings\nToday: $${todayUSD.toFixed(4)}\nTotal available: $${totalUSD.toFixed(4)}`;
+      this._item.command = "spinearn.showDashboard";
     }
 
     this._item.backgroundColor = undefined;

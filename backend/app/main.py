@@ -1,4 +1,4 @@
-from collections.abc import AsyncGenerator
+﻿from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
 import structlog
@@ -20,7 +20,7 @@ logger = structlog.get_logger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    logger.info("spinads.startup", environment=settings.ENVIRONMENT)
+    logger.info("spinearn.startup", environment=settings.ENVIRONMENT)
     await init_db()
 
     redis = await get_redis()
@@ -31,7 +31,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
     yield
 
-    logger.info("spinads.shutdown")
+    logger.info("spinearn.shutdown")
     await close_db()
     await close_redis()
 

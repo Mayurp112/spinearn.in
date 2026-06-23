@@ -1,4 +1,4 @@
-# SpinEarn / SpinAds — Deployment & Extension Marketplace Guide
+﻿# SpinEarn / SpinEarn — Deployment & Extension Marketplace Guide
 
 > **Platform:** VS Code Extension (published via VS Code Marketplace)
 > **Backend:** FastAPI + PostgreSQL + Redis + Celery on AWS EC2
@@ -124,8 +124,8 @@ WISE_PROFILE_ID=12345678
 ### Required — URLs
 
 ```env
-FRONTEND_URL=https://app.spinads.dev
-BACKEND_URL=https://api.spinads.dev
+FRONTEND_URL=https://app.spinearn.in
+BACKEND_URL=https://api.spinearn.in
 ENVIRONMENT=production
 ```
 
@@ -199,7 +199,7 @@ npm run dev    # http://localhost:3000
 
 ## 4. Staging Deployment on EC2
 
-Use a separate t3.medium instance with a staging subdomain (e.g., `staging.spinads.dev`).
+Use a separate t3.medium instance with a staging subdomain (e.g., `staging.spinearn.in`).
 
 ```bash
 # SSH into staging instance
@@ -293,17 +293,17 @@ DATABASE_READ_URL=postgresql://spinads:password@your-rds-replica-endpoint:5432/s
 # Redirect HTTP to HTTPS
 server {
     listen 80;
-    server_name api.spinads.dev app.spinads.dev;
+    server_name api.spinearn.in app.spinearn.in;
     return 301 https://$host$request_uri;
 }
 
 # API — proxy to FastAPI backend
 server {
     listen 443 ssl http2;
-    server_name api.spinads.dev;
+    server_name api.spinearn.in;
 
-    ssl_certificate     /etc/letsencrypt/live/api.spinads.dev/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/api.spinads.dev/privkey.pem;
+    ssl_certificate     /etc/letsencrypt/live/api.spinearn.in/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.spinearn.in/privkey.pem;
     ssl_protocols       TLSv1.2 TLSv1.3;
     ssl_ciphers         HIGH:!aNULL:!MD5;
 
@@ -322,10 +322,10 @@ server {
 # Frontend — proxy to Next.js
 server {
     listen 443 ssl http2;
-    server_name app.spinads.dev;
+    server_name app.spinearn.in;
 
-    ssl_certificate     /etc/letsencrypt/live/app.spinads.dev/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/app.spinads.dev/privkey.pem;
+    ssl_certificate     /etc/letsencrypt/live/app.spinearn.in/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/app.spinearn.in/privkey.pem;
     ssl_protocols       TLSv1.2 TLSv1.3;
 
     location / {
@@ -355,7 +355,7 @@ sudo nginx -t && sudo systemctl reload nginx
 sudo apt install -y certbot python3-certbot-nginx
 
 # Issue certificates for both domains
-sudo certbot --nginx -d api.spinads.dev -d app.spinads.dev \
+sudo certbot --nginx -d api.spinearn.in -d app.spinearn.in \
   --email mayur.pashte@acc.ltd --agree-tos --no-eff-email
 
 # Test auto-renewal
@@ -652,7 +652,7 @@ SpinEarn is a **VS Code extension**, published exclusively via the [VS Code Mark
 2. Sign in with a Microsoft account
 3. Click **Create Publisher**
 4. Set publisher ID to `spinads` (must match `package.json` `publisher` field exactly)
-5. Complete profile: display name, website (`https://spinads.dev`), logo
+5. Complete profile: display name, website (`https://spinearn.in`), logo
 
 ### Create a Personal Access Token (PAT)
 
@@ -753,10 +753,10 @@ vsce publish --pat $VSCE_PAT patch
 
 ```bash
 # Check the extension is live
-vsce show spinads.spinads
+vsce show spinearn.spinearn
 
 # Install the just-published version locally
-code --install-extension spinads.spinads
+code --install-extension spinearn.spinearn
 ```
 
 ---
@@ -792,11 +792,11 @@ Required fields in `package.json`:
 
 ```json
 {
-  "name": "spinads",
+  "name": "spinearn",
   "displayName": "SpinEarn — Earn While You Code",
   "description": "Earn passive income by viewing non-intrusive ads in VS Code while you work.",
   "version": "1.0.0",
-  "publisher": "spinads",
+  "publisher": "spinearn",
   "engines": { "vscode": "^1.85.0" },
   "categories": ["Other"],
   "keywords": ["earn money", "ads", "passive income", "developer earnings", "spinads"],
@@ -807,17 +807,17 @@ Required fields in `package.json`:
     "configuration": {
       "title": "SpinEarn",
       "properties": {
-        "spinads.apiUrl": {
+        "spinearn.apiUrl": {
           "type": "string",
-          "default": "https://api.spinads.dev",
+          "default": "https://api.spinearn.in",
           "description": "SpinEarn API endpoint URL"
         },
-        "spinads.enabled": {
+        "spinearn.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Enable or disable SpinEarn ad display"
         },
-        "spinads.showInStatusBar": {
+        "spinearn.showInStatusBar": {
           "type": "boolean",
           "default": true,
           "description": "Show earnings in the VS Code status bar"
@@ -828,7 +828,7 @@ Required fields in `package.json`:
   "repository": { "type": "git", "url": "https://github.com/your-org/spinads" },
   "license": "MIT",
   "bugs": { "url": "https://github.com/your-org/spinads/issues" },
-  "homepage": "https://spinads.dev"
+  "homepage": "https://spinearn.in"
 }
 ```
 
@@ -907,7 +907,7 @@ Add screenshots under `images/` and reference in README. Recommended:
 If rejected, you receive an email to the Microsoft account linked to the publisher. Fix the flagged issue and re-publish — no cooldown period.
 
 **After publishing, the extension appears at:**
-`https://marketplace.visualstudio.com/items?itemName=spinads.spinads`
+`https://marketplace.visualstudio.com/items?itemName=spinearn.spinearn`
 
 ---
 
